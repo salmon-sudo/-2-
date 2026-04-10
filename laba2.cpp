@@ -72,9 +72,58 @@ public:
 int main() {
 	setlocale(LC_ALL, "Russian");
 
+	cout << "\n Базовый класс Point \n\n";
+	Point p1;
+	Point p2(1, 2);
+	Point p3 = p2;
+	Point* p4 = new Point(5, 5);
+
+	p4->show();
+	p3.show();
+
+	cout << "\n Наследование ColorPoint \n\n";
+	ColorPoint q1(10, 15, 20);
+	q1.show();
+
+	cout << "\n Копирование объектов ColorPoint \n\n";
+	ColorPoint cp_orig(1, 2, 3);
+	ColorPoint cp_copy = cp_orig;
+	cp_copy.show();
+
 	cout << "\n Композиция Line \n\n";
 	Line myLine(10, 10, 20, 20);
 	myLine.show();
+
+	cout << "\n Копирование объектов \n\n";
+	Point objA(10, 10);
+	Point objB = objA;
+
+	objA.show();
+	objB.show();
+
+	objA = Point(99, 99);
+	objA.show();
+	objB.show();
+
+	cout << "\n Копирование указателей \n\n";
+	Point* ptr1 = new Point(55, 55);
+	Point* ptr2 = ptr1;
+
+	ptr1->show();
+	ptr2->show();
+
+	*ptr1 = Point(77, 77);
+	ptr1->show();
+	ptr2->show();
+
+	cout << "\n Указатель базового класса на объект потомка \n\n";
+	Point* base_ptr = new ColorPoint(1, 1, 100);
+	base_ptr->show();
+	delete base_ptr;
+
+	cout << "\n Очистка памяти \n\n";
+	delete ptr1;
+	delete p4;
 
 	return 0;
 }
