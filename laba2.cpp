@@ -48,15 +48,33 @@ public:
 	}
 };
 
+class Line {
+private:
+	Point p1;
+	Point* p2;
+
+public:
+	Line(int x1, int y1, int x2, int y2) : p1(x1, y1) {
+		p2 = new Point(x2, y2);
+	}
+	~Line() {
+		cout << "Деструктор Line начало" << '\n';
+		delete p2;
+		cout << "Деструктор Line завершение" << '\n';
+	}
+	void show() {
+		cout << "Линия состоит из:" << '\n';
+		cout << "Точка 1 (объект): "; p1.show();
+		cout << "Точка 2 (указатель): "; p2->show();
+	}
+};
+
 int main() {
 	setlocale(LC_ALL, "Russian");
 
-	cout << "\n Наследование ColorPoint \n\n";
-	ColorPoint q1(10, 15, 20);
-	q1.show();
-
-	ColorPoint cp_copy = q1;
-	cp_copy.show();
+	cout << "\n Композиция Line \n\n";
+	Line myLine(10, 10, 20, 20);
+	myLine.show();
 
 	return 0;
 }
